@@ -33,7 +33,7 @@
       output.errorField = 'username';
       output.error = String(rawUsername ?? '').trim()
         ? 'Укажите имя пользователя: латинские буквы, цифры и _. Можно вставить ссылку t.me на профиль.'
-        : 'Укажите имя пользователя получателя.';
+        : 'Укажите ваш username в Telegram.';
       return output;
     }
     if (length > MAX_MESSAGE_LENGTH) {

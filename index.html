@@ -10,7 +10,7 @@ FORM: Approved two-column utility; single column on phones. No decorative assets
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Создайте ссылку в личный чат Telegram с готовым сообщением. Укажите получателя, добавьте текст и скопируйте ссылку для своего сайта.">
+  <meta name="description" content="Создайте ссылку для кнопки на сайте: она откроет ваш чат в Telegram с заранее заполненным сообщением для посетителя.">
   <meta name="theme-color" content="#f5f7fb">
   <title>Чатлинк — ссылка в Telegram с готовым текстом</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
@@ -39,22 +39,22 @@ FORM: Approved two-column utility; single column on phones. No decorative assets
     <main>
       <section class="intro" aria-labelledby="page-title">
         <h1 id="page-title">Ссылка в Telegram<br><span>с готовым текстом</span></h1>
-        <p>Укажите получателя и сообщение. Скопируйте ссылку и добавьте её на сайт, в письмо или соцсети.</p>
+        <p>Укажите ваш Telegram и готовое сообщение для посетителя. Скопируйте ссылку и вставьте её в кнопку на сайте.</p>
       </section>
 
       <section class="workspace" aria-label="Создание ссылки">
         <form class="editor" id="link-form" novalidate>
           <div class="field-group">
-            <label for="username"><span class="step-number" aria-hidden="true">1</span>Кому пишем</label>
+            <label for="username"><span class="step-number" aria-hidden="true">1</span>Ваш Telegram для связи</label>
             <input id="username" name="username" type="text" placeholder="@username или https://t.me/username" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="username-help username-error">
-            <p class="field-help" id="username-help">Имя пользователя получателя в Telegram.</p>
+            <p class="field-help" id="username-help">Ваш аккаунт, с которым откроется чат у посетителя. Например: @Victoria_Ivrika.</p>
             <p class="field-error" id="username-error" aria-live="polite" hidden></p>
           </div>
 
           <div class="field-group">
-            <div class="label-row"><label for="message"><span class="step-number" aria-hidden="true">2</span>Текст сообщения</label><span class="counter" id="message-count">0 / 4096</span></div>
+            <div class="label-row"><label for="message"><span class="step-number" aria-hidden="true">2</span>Готовое сообщение</label><span class="counter" id="message-count">0 / 4096</span></div>
             <textarea id="message" name="message" rows="6" dir="auto" placeholder="Например: Здравствуйте! Хочу узнать подробнее о ваших занятиях." aria-describedby="message-help message-error message-count"></textarea>
-            <p class="field-help" id="message-help">Можно добавить эмодзи, переносы строк и обычные ссылки.</p>
+            <p class="field-help" id="message-help">Этот текст появится в поле ввода Telegram. Посетителю останется нажать «Отправить».</p>
             <p class="field-error" id="message-error" aria-live="polite" hidden></p>
           </div>
 
@@ -65,7 +65,7 @@ FORM: Approved two-column utility; single column on phones. No decorative assets
               <button class="button button-primary" id="copy-link" type="button" disabled><svg class="icon" aria-hidden="true"><use id="copy-icon" href="#i-copy"/></svg><span id="copy-label">Копировать ссылку</span></button>
               <a class="button button-secondary" id="open-link" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">Открыть в Telegram<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </div>
-            <p class="result-hint" id="result-hint">Сначала укажите получателя.</p>
+            <p class="result-hint" id="result-hint">Сначала укажите ваш Telegram для связи.</p>
             <p class="copy-status" id="copy-status" role="status" aria-live="polite" aria-atomic="true"></p>
           </div>
         </form>
@@ -75,7 +75,7 @@ FORM: Approved two-column utility; single column on phones. No decorative assets
           <div class="chat-preview">
             <div class="chat-header">
               <div class="avatar" id="preview-avatar" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></div>
-              <div class="chat-person"><p id="preview-recipient">Ваш получатель</p><span>Личный чат в Telegram</span></div>
+              <div class="chat-person"><p id="preview-recipient">Ваш аккаунт</p><span>Личный чат в Telegram</span></div>
             </div>
             <div class="chat-space">
               <span class="chat-caption">После перехода по ссылке</span>
@@ -86,7 +86,7 @@ FORM: Approved two-column utility; single column on phones. No decorative assets
               </div>
             </div>
           </div>
-          <p class="preview-explainer">Ссылка откроет чат и заполнит поле сообщения. Посетитель проверит текст и отправит его сам.</p>
+          <p class="preview-explainer">После нажатия кнопки на сайте посетитель попадёт в чат с вами. Сообщение уже будет в поле ввода — нужно только нажать «Отправить».</p>
           <div class="format-note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><p>Обычная ссылка передаёт только текст. Жирное выделение и ссылки внутри слов не сохраняются.</p></div>
         </aside>
       </section>

@@ -41,11 +41,11 @@
       openLink.setAttribute('tabindex', '-1');
     }
     byId('result-hint').textContent = !result.username
-      ? 'Сначала укажите получателя.'
+      ? 'Сначала укажите ваш Telegram для связи.'
       : tooLong ? 'Сократите сообщение, чтобы создать ссылку.'
-      : message.value ? 'Готово. Ссылку можно добавить на кнопку или в текст.'
+      : message.value ? 'Готово. Скопируйте ссылку и вставьте её в кнопку на сайте.'
       : 'Ссылка откроет чат без подготовленного сообщения.';
-    byId('preview-recipient').textContent = result.username ? '@' + result.username : 'Ваш получатель';
+    byId('preview-recipient').textContent = result.username ? '@' + result.username : 'Ваш аккаунт';
     const avatar = byId('preview-avatar');
     avatar.textContent = result.username ? result.username[0].toUpperCase() : 'Т';
     const preview = byId('preview-message');
