@@ -1,0 +1,105 @@
+<!doctype html>
+<!--
+THESIS: A useful Telegram link is created in one screen, with an honest draft preview.
+OWN-WORLD: Cool light surfaces, blue actions, system type, outline icons, quiet borders.
+STORY: Enter a recipient and message; inspect the draft; copy a ready-to-use link.
+FIRST VIEWPORT: Compact identity, concise title, form left, chat preview right, copy beneath fields.
+FORM: Approved two-column utility; single column on phones. No decorative assets or load sequence.
+-->
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Создайте ссылку в личный чат Telegram с готовым сообщением. Укажите получателя, добавьте текст и скопируйте ссылку для своего сайта.">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>Чатлинк — ссылка в Telegram с готовым текстом</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./link-core.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-plane" viewBox="0 0 24 24"><path d="m21 3-6.5 18-4-7.5L3 9.5 21 3Z"/><path d="m10.5 13.5 5-5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+  </svg>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="Чатлинк — главная">
+        <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></span>
+        <span>Чатлинк</span>
+      </a>
+      <span class="header-note"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Без входа в аккаунт</span>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">Ссылка в Telegram<br><span>с готовым текстом</span></h1>
+        <p>Укажите получателя и сообщение. Скопируйте ссылку и добавьте её на сайт, в письмо или соцсети.</p>
+      </section>
+
+      <section class="workspace" aria-label="Создание ссылки">
+        <form class="editor" id="link-form" novalidate>
+          <div class="field-group">
+            <label for="username"><span class="step-number" aria-hidden="true">1</span>Кому пишем</label>
+            <input id="username" name="username" type="text" placeholder="@username или https://t.me/username" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="username-help username-error">
+            <p class="field-help" id="username-help">Имя пользователя получателя в Telegram.</p>
+            <p class="field-error" id="username-error" aria-live="polite" hidden></p>
+          </div>
+
+          <div class="field-group">
+            <div class="label-row"><label for="message"><span class="step-number" aria-hidden="true">2</span>Текст сообщения</label><span class="counter" id="message-count">0 / 4096</span></div>
+            <textarea id="message" name="message" rows="6" dir="auto" placeholder="Например: Здравствуйте! Хочу узнать подробнее о ваших занятиях." aria-describedby="message-help message-error message-count"></textarea>
+            <p class="field-help" id="message-help">Можно добавить эмодзи, переносы строк и обычные ссылки.</p>
+            <p class="field-error" id="message-error" aria-live="polite" hidden></p>
+          </div>
+
+          <div class="result-group">
+            <label for="final-link"><span class="step-number" aria-hidden="true">3</span>Ваша ссылка</label>
+            <textarea id="final-link" rows="2" readonly placeholder="Здесь появится готовая ссылка" aria-describedby="result-hint copy-status" spellcheck="false"></textarea>
+            <div class="actions">
+              <button class="button button-primary" id="copy-link" type="button" disabled><svg class="icon" aria-hidden="true"><use id="copy-icon" href="#i-copy"/></svg><span id="copy-label">Копировать ссылку</span></button>
+              <a class="button button-secondary" id="open-link" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">Открыть в Telegram<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+            <p class="result-hint" id="result-hint">Сначала укажите получателя.</p>
+            <p class="copy-status" id="copy-status" role="status" aria-live="polite" aria-atomic="true"></p>
+          </div>
+        </form>
+
+        <aside class="preview-column" aria-labelledby="preview-title">
+          <div class="preview-heading"><h2 id="preview-title">Предпросмотр</h2><span class="preview-tag">Черновик</span></div>
+          <div class="chat-preview">
+            <div class="chat-header">
+              <div class="avatar" id="preview-avatar" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></div>
+              <div class="chat-person"><p id="preview-recipient">Ваш получатель</p><span>Личный чат в Telegram</span></div>
+            </div>
+            <div class="chat-space">
+              <span class="chat-caption">После перехода по ссылке</span>
+              <div class="draft-box">
+                <span class="draft-label">Сообщение</span>
+                <p class="preview-message is-placeholder" id="preview-message" dir="auto">Ваш текст появится здесь.<br>Добавьте сообщение в поле слева.</p>
+                <div class="draft-bottom"><span>Черновик, ещё не отправлен</span><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></div>
+              </div>
+            </div>
+          </div>
+          <p class="preview-explainer">Ссылка откроет чат и заполнит поле сообщения. Посетитель проверит текст и отправит его сам.</p>
+          <div class="format-note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><p>Обычная ссылка передаёт только текст. Жирное выделение и ссылки внутри слов не сохраняются.</p></div>
+        </aside>
+      </section>
+
+      <section class="help-section" aria-label="Использование ссылки">
+        <details>
+          <summary>Как добавить ссылку на сайт<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="help-content"><p>Скопируйте готовую ссылку. В редакторе сайта выберите кнопку или текст, откройте настройку ссылки и вставьте её в поле адреса.</p><p>Для HTML: <code>&lt;a href="ВАША_ССЫЛКА"&gt;Написать в Telegram&lt;/a&gt;</code>. При ручной вставке в HTML замените символы <code>&amp;</code> в адресе на <code>&amp;amp;</code>.</p></div>
+        </details>
+      </section>
+    </main>
+    <footer class="site-footer"><span>Работает с обычным аккаунтом Telegram</span><span>Текст не сохраняется и входит в саму ссылку</span></footer>
+  </div>
+  <noscript><div class="noscript">Для создания ссылки включите JavaScript в настройках браузера.</div></noscript>
+</body>
+</html>
